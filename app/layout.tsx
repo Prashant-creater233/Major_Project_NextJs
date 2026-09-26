@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Provider from "@/provider";
 
 export const metadata: Metadata = {
   title: "Grovana | 10 minutes grocery delievery app",
@@ -12,7 +13,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
     >
-      <body className="w-full min-h-screen bg-linear-to-b from-green-100 to-white">{children}</body>
+      <body className="w-full min-h-screen bg-linear-to-b from-green-100 to-white">
+        <Provider>
+        {children}
+        </Provider>
+        </body>
     </html>
   );
 }

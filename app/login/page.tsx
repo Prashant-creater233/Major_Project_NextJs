@@ -7,7 +7,7 @@ import Image from 'next/image'
 import googleImage from "@/assests/google.png"
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 
 
 function Login() {
@@ -16,6 +16,9 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const router = useRouter()
+  const session=useSession()
+  console.log(session);
+
   const handleLogin=async (e:FormEvent)=>{
     e.preventDefault()
     setLoading(true)
@@ -135,6 +138,7 @@ function Login() {
         <button
           type="button"
           className='w-full flex items-center justify-center gap-3 border border-gray-300 hover:bg-gray-50 py-3 rounded-xl text-gray-700 font-medium transition-all duration-200'
+          onClick={()=>signIn("google")}
         >
           <Image
             src={googleImage}
